@@ -87,7 +87,7 @@
         max-width: 150px; /* Adjust the width as needed */
         height: auto; /* Maintain aspect ratio */
     }
-</style>
+
         
         
         .img-margin{
@@ -116,6 +116,7 @@
             border-radius: 0.375rem;
             transition: background-color 0.2s ease;
         }
+        
         .top-2 {
             top: 0.1rem;
             left: 100px;
@@ -286,15 +287,50 @@
                                             <div class="flex-1 mx-4">
                                                 <input type="number" name="skills[0][range]" placeholder="Range (0-100)" min="0" max="100" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                             </div>
-                                            <button type="button" class="remove-skill bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">Remove</button>
+                                            <button type="button" style="
+                                            background-color: #dc2626; /* bg-red-600 */
+                                            color: #ffffff; /* text-white */
+                                            padding: 0.25rem 0.75rem; /* px-3 py-1 */
+                                            border-radius: 0.375rem; /* rounded-md */
+                                            cursor: pointer; /* Default pointer cursor */
+                                            transition: background-color 0.2s ease; /* Smooth background-color transition */
+                                            /* Hover effect */
+                                            outline: none; /* Remove default outline on focus */
+                                        " onmouseover="this.style.backgroundColor='#b91c1c';" 
+                                           onmouseout="this.style.backgroundColor='#dc2626';">
+                                            Remove
+                                        </button>
+                                        
                                         </div>
                                     </div>
                                 
                                     <!-- Add More Skills Button -->
-                                    <button type="button" id="add-skill" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 mb-4">Add More</button>
-                                
-                                    <!-- Submit Button -->
-                                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Save</button>
+                                    <button type="button" id="add-skill" style="
+                                    background-color: #2563eb; /* bg-blue-600 */
+                                    color: #ffffff; /* text-white */
+                                    padding: 0.5rem 1rem; /* px-4 py-2 */
+                                    border-radius: 0.375rem; /* rounded-md */
+                                    cursor: pointer; /* Default pointer cursor */
+                                    transition: background-color 0.2s ease; /* Smooth background-color transition */
+                                    margin-bottom: 1rem; /* mb-4 */
+                                    outline: none; /* Remove default outline on focus */
+                                " onmouseover="this.style.backgroundColor='#1d4ed8';" 
+                                   onmouseout="this.style.backgroundColor='#2563eb';">
+                                    Add More
+                                </button>
+                                <button type="submit" style="
+                                background-color: #16a34a; /* bg-green-600 */
+                                color: #ffffff; /* text-white */
+                                padding: 0.5rem 1rem; /* px-4 py-2 */
+                                border-radius: 0.375rem; /* rounded-md */
+                                cursor: pointer; /* Default pointer cursor */
+                                transition: background-color 0.2s ease; /* Smooth background-color transition */
+                                outline: none; /* Remove default outline on focus */
+                            " onmouseover="this.style.backgroundColor='#15803d';" 
+                               onmouseout="this.style.backgroundColor='#16a34a';">
+                                Save
+                            </button>
+                                                            
                                 </form>
                             </div>
                         
@@ -311,14 +347,27 @@
                                         newSkill.classList.add('skill-item', 'flex', 'items-center', 'mb-2');
                         
                                         newSkill.innerHTML = `
-                                            <div class="flex-1">
-                                                <input type="text" name="skills[${skillIndex}][name]" placeholder="Skill Name" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                            </div>
-                                            <div class="flex-1 mx-4">
-                                                <input type="number" name="skills[${skillIndex}][range]" placeholder="Range (0-100)" min="0" max="100" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                            </div>
-                                            <button type="button" class="remove-skill bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">Remove</button>
-                                        `;
+            <div class="flex-1">
+                <input type="text" name="skills[${skillIndex}][name]" placeholder="Skill Name" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+            <div class="flex-1 mx-4">
+                <input type="number" name="skills[${skillIndex}][range]" placeholder="Range (0-100)" min="0" max="100" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+            <button type="button" class="remove-skill-button" style="
+                margin-left: 1rem;
+                background-color: #E11D48;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                border-radius: 0.375rem;
+                transition: background-color 0.2s ease;
+                margin-top: 22px;
+                color: #fff;
+                cursor: pointer;">
+                Remove
+            </button>
+        `;
                         
                                         skillsSection.appendChild(newSkill);
                                         skillIndex++;
@@ -334,6 +383,105 @@
                             </script>
                             @endpush
                         </div>
+                        <style>
+                           
+    /* Container for the table */
+    #allteam {
+        padding: 1rem; /* Add padding around the container */
+    }
+
+    /* Table styling */
+    table {
+        width: 100%; /* Full width */
+        border-collapse: collapse; /* Collapse borders */
+    }
+
+    /* Table header styling */
+    thead {
+        background-color: #f9fafb; /* Light gray background */
+    }
+
+    th {
+        padding: 0.75rem; /* Add padding */
+        text-align: left; /* Align text to the left */
+        font-size: 0.75rem; /* Smaller font size */
+        color: #6b7280; /* Gray text color */
+        text-transform: uppercase; /* Uppercase text */
+        letter-spacing: 0.1em; /* Letter spacing for uppercase */
+    }
+
+    /* Table cell styling */
+    td {
+        padding: 0.75rem; /* Add padding */
+        font-size: 0.875rem; /* Slightly larger font size */
+        color: #374151; /* Dark gray text color */
+    }
+
+    /* Table row styling */
+    tbody tr:nth-child(even) {
+        background-color: #f9fafb; /* Alternate row background */
+    }
+
+    /* Image styling */
+    img {
+        border-radius: 0.375rem; /* Rounded corners */
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+
+    /* Skill item styling */
+    .skill-item {
+        margin-bottom: 0.25rem; /* Space between skill items */
+    }
+
+    /* Action link and button styling */
+    .text-indigo-600 {
+        color: #4f46e5; /* Indigo color */
+    }
+
+    .text-indigo-600:hover {
+        color: #4338ca; /* Darker indigo on hover */
+    }
+
+    .text-red-600 {
+        color: #dc2626; /* Red color */
+    }
+
+    .text-red-600:hover {
+        color: #b91c1c; /* Darker red on hover */
+    }
+
+    button {
+        background: none; /* Remove default background */
+        border: none; /* Remove default border */
+        cursor: pointer; /* Pointer cursor for buttons */
+    }
+
+    /* Pagination styling */
+    .pagination {
+        display: flex; /* Flexbox for pagination items */
+        justify-content: center; /* Center pagination */
+        gap: 0.5rem; /* Space between pagination items */
+    }
+
+    .pagination a {
+        padding: 0.5rem 1rem; /* Padding for pagination links */
+        border: 1px solid #d1d5db; /* Border around pagination links */
+        border-radius: 0.375rem; /* Rounded corners */
+        text-decoration: none; /* Remove underline */
+        color: #4f46e5; /* Indigo text color */
+    }
+
+    .pagination a:hover {
+        background-color: #e5e7eb; /* Light gray background on hover */
+    }
+
+    .pagination .active {
+        background-color: #4f46e5; /* Indigo background for active page */
+        color: #ffffff; /* White text for active page */
+    }
+
+
+                        </style>
                         <div id="allteam" class="tab-content hidden p-4">
                           
                             @if ($teams->count() > 0)
@@ -370,12 +518,21 @@
                                                     @endforeach
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <a href="{{route('teamedit',$team->id)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                    <form id="teamdelete-{{ $team->id }}" action="{{ route('delete', $team->id)}}" method="POST" class="inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="text-red-600 hover:text-red-900 ml-4">Delete</button>
-                                                    </form>
+                                                    <a href="{{ route('teamedit', $team->id) }}" style="color: #4f46e5; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s ease-in-out;" 
+                                                        onmouseover="this.style.color='#4338ca';" 
+                                                        onmouseout="this.style.color='#4f46e5';">
+                                                        Edit
+                                                     </a>
+                                                     <form id="teamdelete-{{ $team->id }}" action="{{ route('delete', $team->id) }}" method="POST" style="display: inline-block;">
+                                                         @csrf
+                                                         @method('DELETE')
+                                                         <button type="submit" style="color: #dc2626; background: none; border: none; font-size: 0.875rem; font-weight: 500; margin-left: 1rem; cursor: pointer; transition: color 0.2s ease-in-out;" 
+                                                                 onmouseover="this.style.color='#b91c1c';" 
+                                                                 onmouseout="this.style.color='#dc2626';">
+                                                             Delete
+                                                         </button>
+                                                     </form>
+                                                     
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -548,7 +705,17 @@
                                 <label for="image-${fieldCount}" class="block text-sm font-medium text-gray-700">Image</label>
                                 <input type="file" id="image-${fieldCount}" name="images[]" accept="image/*" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
-                            <button type="button" class="ml-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700" onclick="removeField(this)">Remove</button>
+                            <button type="button" style="
+                                        margin-left: 1rem;
+                                        background-color: #E11D48;
+                                        padding-left: 1rem;
+                                        padding-right: 1rem;
+                                        padding-top: 0.5rem;
+                                        padding-bottom: 0.5rem;
+                                        border-radius: 0.375rem;
+                                        transition: background-color 0.2s ease;
+                                        margin-top: 22px;
+                                        color: #fff;" class="ml-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700" onclick="removeField(this)">Remove</button>
                         `;
                         formFields.appendChild(newField);
                     }
