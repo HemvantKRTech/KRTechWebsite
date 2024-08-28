@@ -21,8 +21,9 @@ class HomePageController extends Controller
     {
         $slider = Slider::paginate(10);
         $teams = Team::with('skill')->paginate(10);
-        // dd($teams);
-        return view("pages.home-page-setting", compact("slider","teams"));
+        $blogs= Blog::paginate(10);
+        // dd($blogs);
+        return view("pages.home-page-setting", compact("slider","teams","blogs"));
     }
     public function create(Request $request){
             $request->validate([
@@ -111,6 +112,59 @@ class HomePageController extends Controller
             
             return redirect()->back()->with('error', 'Failed to add team member. Please try again.');
         }
+    }
+    public function teamedit($id){
+        $team = Team::with('skill')->find($id);
+        if (!$team) {
+            return redirect()->back()->with('error','No team Member find');
+        }
+        // dd($team);
+        return view('Admin/Editteam', compact('team'));
+    }
+    public function updateteam(Request $request, $id) {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'linkedin_link' => 'nullable|url',
+            'instagram_link' => 'nullable|url',
+            'twitter_link' => 'nullable|url',
+            'facebook_link' => 'nullable|url',
+            'skills.*.name' => 'required|string|max:255',
+            'skills.*.range' => 'required|integer|between:0,100',
+        ]);
+    
+        // Find the team member by ID
+        $team = Team::findOrFail($id);
+    
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($team->image) {
+                Storage::disk('public')->delete('team_images/' . $team->image);
+            }
+            // Store new image
+            $validatedData['image'] = $request->file('image')->store('team_images', 'public');
+        } else {
+            // If no new image is uploaded, keep the old image
+            $validatedData['image'] = $team->image;
+        }
+    
+        // Update the team member's data
+        $team->update($validatedData);
+    
+        // Update skills
+        $team->skill()->delete(); // Remove old skills
+    
+        foreach ($request->input('skills') as $skill) {
+            Skill::create([
+                'team_id' => $team->id,
+                'name' => $skill['name'],
+                'range' => $skill['range'],
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Team member details updated successfully.');
     }
     
     public function delete($id) {
@@ -396,5 +450,87 @@ class HomePageController extends Controller
             }
         
             return redirect()->back()->with('success', 'Terms and condition has been saved successfully.');
+        }
+        public function editblog($id){
+            $blog = Blog::find($id);
+            return view('Admin/EditBlog', compact('blog'));
+        }
+        public function updateblog(Request $request, $id){
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'editordata' => 'required|string',
+            ]);
+        
+            // Find the existing blog post by ID
+            $blog = Blog::findOrFail($id);
+        
+            // Check if a new image is uploaded
+            if ($request->hasFile('featured_image')) {
+                // Delete the old image if it exists
+                if ($blog->featured_image) {
+                    Storage::delete('public/' . $blog->featured_image);
+                }
+        
+                // Handle the image upload
+                $imagePath = $request->file('featured_image')->store('featured_image', 'public');
+                $blog->featured_image = $imagePath;
+            }
+        
+            // Process the content (editordata)
+            $description = $request->editordata;
+            $dom = new \DomDocument();
+            @$dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        
+            // Handle images in the editor content
+            $imageFiles = $dom->getElementsByTagName('img');
+            foreach ($imageFiles as $key => $image) {
+                $data = $image->getAttribute('src');
+        
+                // Check if the image data is base64 encoded (embedded image)
+                if (strpos($data, 'data:image') === 0) {
+                    list($type, $data) = explode(';', $data);
+                    list(, $data) = explode(',', $data);
+        
+                    // Decode the base64 data and store the image
+                    $imageData = base64_decode($data);
+                    $image_name = time() . $key . '.png';
+                    $path = public_path('uploads/') . $image_name;
+                    file_put_contents($path, $imageData);
+        
+                    // Replace the src attribute with the file path
+                    $image->removeAttribute('src');
+                    $image->setAttribute('src', '/uploads/' . $image_name);
+                }
+            }
+        
+            // Save the processed HTML back to the description
+            $description = $dom->saveHTML();
+        
+            // Update the blog fields
+            $blog->title = $request->title;
+            $blog->slug = Str::slug($request->title); // Ensure the slug is updated
+            $blog->description = $description;
+            $blog->tags = $request->tags;
+        
+            // Save the updated blog post
+            $blog->save();
+        
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Blog post updated successfully!');
+        }
+        public function blogdestroy($id){
+            $blog = Blog::findOrFail($id);
+
+    // Delete the featured image from storage, if it exists
+    if ($blog->featured_image) {
+        Storage::delete('public/' . $blog->featured_image);
+    }
+
+    // Delete the blog post from the database
+    $blog->delete();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Blog post deleted successfully!');
         }
 }

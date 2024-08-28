@@ -119,6 +119,6 @@
     </div>
 
     @push('scripts')
-    @vite('resources/js/comment.js')
+    <script src="{{ asset('js/comment.js') }}"></script>
     @endpush
 </x-layout>

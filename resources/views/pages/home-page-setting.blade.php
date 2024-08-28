@@ -63,6 +63,32 @@
         .overlay.show {
             display: block;
         }
+        .width{
+            width: 100%;
+            float: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .title{
+            width: 25%;
+            float: left;
+            text-align: center;
+        }
+        .featured-image{
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+        .action{
+            width: 25%;
+            float: left;
+            text-align: center;
+        }<style>
+    .small-image {
+        max-width: 150px; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+</style>
+        
         
         </style>
        @endpush
@@ -77,7 +103,14 @@
             
             <div class="content">
             
-                
+                @if(session('success'))
+                <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px; border: 1px solid #c3e6cb; border-radius: 5px; position: relative; display: flex; align-items: center; justify-content: space-between;" role="alert">
+                    {{ session('success') }}
+                    <button type="button" style="background: none; border: none; font-size: 20px; line-height: 1; color: #155724; cursor: pointer; margin-left: 15px;" onclick="this.parentElement.style.display='none';" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
                     
                     <!-- Tabs -->
                     <ul id="tabs" class="flex border-b bg-gray-200">
@@ -91,7 +124,7 @@
                             <a href="#allteam" class="block py-2 px-4 text-gray-800 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500">All Teams</a>
                         </li>
                         <li class="tab-item flex-1">
-                            <a href="#third" class="block py-2 px-4 text-gray-800 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500">Faqs</a>
+                            <a href="#third" class="block py-2 px-4 text-gray-800 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500">All Blogs</a>
                         </li>
                         <li class="tab-item flex-1">
                             <a href="#fourth" class="block py-2 px-4 text-gray-800 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500">Blog Post</a>
@@ -321,7 +354,7 @@
                                                     @endforeach
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <a href="{{route('teamedit',$team->id)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                     <form id="teamdelete-{{ $team->id }}" action="{{ route('delete', $team->id)}}" method="POST" class="inline-block">
                                                         @csrf
                                                         @method('DELETE')
@@ -343,7 +376,45 @@
                             @endif  
                         </div>
                         <div id="third" class="tab-content hidden p-4">
-                            Content for Tab 3
+                           
+                            <table class="min-w-full bg-white border border-gray-300">
+                                <thead>
+                                    <tr class="width">
+                                        <th class="title">Title</th>
+                                        <th class="featured-image">Featured Image</th>
+                                        
+                                        <th class="action">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($blogs as $blog)
+                                        <tr class="width">
+                                            <td class="title">{{ $blog->title }}</td>
+                                            <td class="featured-image">
+                                                <div class="img">
+                                                @if ($blog->featured_image)
+                                                    <img src="{{ asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}" style=" max-width: 150px; /* Adjust the width as needed */
+        height: auto;">
+                                                @endif
+                                                </div>
+                                            </td>
+                                            <td class="action">
+                                                <a href="{{ route('blogs.edit', $blog->id) }}" style="background: #3815ac" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</a>
+                                                <!-- Assuming you have a variable $blog containing the blog post data -->
+<form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" style="background: red; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;" 
+            onclick="return confirm('Are you sure you want to delete this blog post?');">
+        Delete
+    </button>
+</form>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                         <div id="fourth" class="tab-content hidden p-4">
                             <div class="">

@@ -38,8 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/sliders/{id}', [HomePageController::class, 'destroy'])->name('slider.destroy');
     Route::post('/add-team', [HomePageController::class, 'addteam'])->name('addteam');
     Route::delete('/delete/{id}', [HomePageController::class, 'delete'])->name('delete');
+   Route::get('/teamedit/{id}', [HomePageController::class, 'teamedit'])->name('teamedit');
+   Route::post('/team/{id}', [HomePageController::class, 'updateteam'])->name('team.update');
     Route::post('/blogs', [HomePageController::class, 'store'])->name('blogs.store');
     Route::get('/blog/{slug}', [HomePageController::class, 'singleblog'])->name('blogs.single');
+    Route::get('/editblog/{id}', [HomePageController::class, 'editblog'])->name('blogs.edit');
+Route::put('updateblog/{id}', [HomePageController::class,'updateblog'])->name('update.blog');
+Route::delete('/deleteblogs/{id}', [HomePageController::class, 'blogdestroy'])->name('blogs.destroy');
+
     Route::get('/allcomment', [HomePageController::class, 'allcomment'])->name('allcomment');
     Route::post('/approvecmnt/{id}', [HomePageController::class, 'approveCmnt'])->name('approvecmnt');
     Route::post('/disapprovecmnt/{id}', [HomePageController::class, 'disapproveCmnt'])->name('disapprovecmnt');

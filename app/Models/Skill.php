@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Skill extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'team_id',
+        'name',
+        'range',
+    ];
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
