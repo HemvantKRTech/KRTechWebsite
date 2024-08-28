@@ -64,6 +64,38 @@
             display: block;
         }
         
+        .img-margin{
+            margin-left: 15px;
+        }
+        #add-more{
+            
+            margin-left: 1rem;
+            background-color: #0066ff;
+            color: #fff;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease;
+        }
+        #save{
+            margin-left: 1rem;
+            background-color: #00e6ac;
+            color: #fff;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease;
+        }
+        .top-2 {
+            top: 0.1rem;
+            left: 100px;
+}
+        
+        
         </style>
        @endpush
         <div class="main">
@@ -110,7 +142,7 @@
                                             <label for="title-1" class="block text-sm font-medium text-gray-700">Title</label>
                                             <input type="text" id="title-1" name="titles[]" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         </div>
-                                        <div class="flex-1 ml-4">
+                                        <div class="flex-1 ml-4 img-margin">
                                             <label for="image-1" class="block text-sm font-medium text-gray-700">Image</label>
                                             <input type="file" id="image-1" name="images[]" accept="image/*" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         </div>
@@ -123,34 +155,18 @@
                                         padding-bottom: 0.5rem;
                                         border-radius: 0.375rem;
                                         transition: background-color 0.2s ease;
-                                    " onmouseover="this.style.backgroundColor='#BE123C'" onmouseout="this.style.backgroundColor='#E11D48'" onclick="removeField(this)">Remove</button>
+                                        margin-top: 22px;
+                                        color: #fff;">Remove</button>
                                     </div>
                                     
                                 </div>
                     
-                                <button type="button" id="add-more" style="
-                                margin-left: 1rem;
-                                background-color: #72ec3e;
-                                padding-left: 1rem;
-                                padding-right: 1rem;
-                                padding-top: 0.5rem;
-                                padding-bottom: 0.5rem;
-                                border-radius: 0.375rem;
-                                transition: background-color 0.2s ease;
-                            " onmouseover="this.style.backgroundColor='#13FF00'" onmouseout="this.style.backgroundColor='#13FF00'">Add More</button>
-                                <button type="submit" style="
-                                margin-left: 1rem;
-                                background-color: #3815ac;
-                                padding-left: 1rem;
-                                padding-right: 1rem;
-                                padding-top: 0.5rem;
-                                padding-bottom: 0.5rem;
-                                border-radius: 0.375rem;
-                                transition: background-color 0.2s ease;
-                            " onmouseover="this.style.backgroundColor='#0B57D0'" onmouseout="this.style.backgroundColor='#0B57D0'">Save</button>
+                                <button type="button" id="add-more">Add More</button>
+
+                                <button type="submit" id="save">Save</button>
                             </form>
                             @if ($slider->count() > 0)
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"  style="width: 50%;display: flex;">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"  style="width: 50%;display: flex;margin-top:20px;">
                                 @foreach ($slider as $slide)
                                     <div class="relative border p-4 rounded bg-gray-100 slider-item" data-slide-id="{{ $slide->id }}">
                                         <!-- Close Button -->
