@@ -51,7 +51,17 @@
         }
         .overlay.show {
             display: block;
+        
         }
+        .container{
+            padding:0px 50px 10px 50px;
+        }
+        .btn{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+
     </style>
     @endpush
 
@@ -77,7 +87,7 @@
 
                 <div class="overflow-x-auto">
                     <div class=" mx-auto p-6 bg-white rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-800">Add/Update Terms and Condition</h2>
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800" style="text-align: center;margin-top: 30px;">Add/Update Terms and Condition</h2>
                         <form action="{{route('conditionstore')}}" method="POST" enctype="multipart/form-data">
                             @csrf <!-- Laravel CSRF protection -->
 
@@ -85,12 +95,14 @@
                            
                             <!-- Service Content with Summernote -->
                             <div class="mb-4">
-                                <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Terms and Condition Content</label>
+                                <label for="content" class="block text-gray-700 text-sm font-bold mb-2" style="text-align: center;margin-bottom: 20px;">Terms and Condition Content</label>
+                            </div>
+                            <div class="container">
                                 <textarea name="content" id="summernote"  class="summernote w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter detailed content" required>{{$term->termscondition}}</textarea>
                             </div>
 
                             <!-- Submit Button -->
-                            <div class="flex justify-end">
+                            <div class="btn">
                                 <button type="submit" style="
                                 padding-left: 1.5rem; /* px-6 */
                                 padding-right: 1.5rem; /* px-6 */

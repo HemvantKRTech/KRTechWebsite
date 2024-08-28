@@ -75,7 +75,7 @@
 
                 <!-- Services Table -->
                 <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white border border-gray-200">
+                    <table class="min-w-full bg-white border border-gray-200"style="width: 100%;">
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="py-2 px-4 border-b">#</th>
@@ -106,7 +106,7 @@
 
                                         <!-- Delete Button -->
                                         
-                                            <a href="#" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600" onclick="deleteservice({{$service->id}})">
+                                            <a href="#" class="px-4 py-2" onclick="deleteservice({{$service->id}})" style="background-color: #E11D48;color: #fff;border-radius: 5px;">
                                                 Delete
                                             </a>
                                         

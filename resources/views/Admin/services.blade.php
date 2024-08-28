@@ -52,6 +52,9 @@
         .overlay.show {
             display: block;
         }
+        .container{
+            padding:0px 50px 10px 50px;
+        }
     </style>
     @endpush
 
@@ -64,17 +67,22 @@
                
                 <div class="overflow-x-auto">
                     <div class=" mx-auto p-6 bg-white rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Service</h2>
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800" style="text-align: center;margin-top: 30px;">Add New Service</h2>
                         <form action="{{route('addservice')}}" method="POST" enctype="multipart/form-data">
                             @csrf <!-- Laravel CSRF protection -->
 
                             <!-- Service Icon -->
                             <div class="mb-4">
-                                <label for="icon" class="block text-gray-700 text-sm font-bold mb-2">Service Icon (URL or Upload)</label>
-                                <input type="file" name="icon" id="icon" class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            </div>
+                                <label for="icon" class="block text-gray-700 text-sm font-bold mb-2" style="text-align: center;margin-bottom: 20px;">Service Icon (URL or Upload)</label>
+                                </div>
+                                <div class="container">
+
+                                <input type="file" name="icon" id="icon" class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required style="margin-bottom: 20px;">
+                            
 
                             <!-- Two Inputs in One Row -->
+
+                            
                             <div class="flex mb-4 space-x-4">
                                 <!-- Service Name -->
                                 <div class="w-1/2">
@@ -83,7 +91,7 @@
                                 </div>
 
                                 <!-- Service Slug -->
-                                <div class="w-1/2">
+                                <div class="w-1/2" style="margin-left: 10px;">
                                     <label for="slug" class="block text-gray-700 text-sm font-bold mb-2">Service Slug</label>
                                     <input type="text" name="slug" id="slug" class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter service slug" required>
                                 </div>
@@ -96,7 +104,7 @@
                             </div>
 
                             <!-- Service Description -->
-                            <div class="w-1/2">
+                            <div class="w-1/2" style="margin-left: 10px;">
                                 <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Service Description</label>
                                 <textarea name="description" id="description" rows="4" class="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter service description" required></textarea>
                             </div>
@@ -112,6 +120,7 @@
                                 <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     Add Service
                                 </button>
+                            </div>
                             </div>
                         </form>
                     </div>
@@ -143,6 +152,7 @@
       });
     </script>
     
-    @vite('resources/js/comment.js')
+    <script src="{{ asset('js/comment.js') }}"></script>
+    
     @endpush
 </x-layout>
