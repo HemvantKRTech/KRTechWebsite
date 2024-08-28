@@ -18,7 +18,7 @@
 
 
     <section class="mt-0  px-4 xl:px-0">
-      <div class="container" style="max-width:none;">
+      <div class="container" style="max-width:none;overflow: hidden;height: 700px;">
         <!-- Slider main container -->
         <div class="single-item">
           @foreach ($slider as $item)
