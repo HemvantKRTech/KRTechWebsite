@@ -25,7 +25,7 @@
           <div class="grid grid-cols-8 lg:grid-cols-12 gap-[30px] mt-14">
             <div class="col-span-8 overflow-hidden">
               <h1 class="text-[40px] leading-[45px] font-[900] text-heading">
-              {{$service->service_name}}
+              {{-- {{$service->service_name}} --}}
               </h1>
               <p class="text-lg text-paragraph mt-[30px]">
                 {!!$service->content !!}
@@ -158,7 +158,7 @@
                 </ul>
               </div>
               <div data-aos="fade-up" class="flex justify-center items-center h-fit rounded-[20px] overflow-hidden mt-[30px] relative xl:max-h-[400px] aos-init">
-                <img src="./assets/img/blogs/s-sidebar-img.png" alt="" class="relative z-0 w-full lg:h-[360px]">
+                <img src="/images/s-sidebar-img.png" alt="" class="relative z-0 w-full lg:h-[360px]">
                 <div class="absolute w-full h-full bg-heading/70"></div>
                 <div class="w-full h-full text-center flex flex-col items-center absolute pt-10">
                   <h1 class="text-xl font-bold text-sb-orange">Contact US now</h1>
@@ -166,7 +166,7 @@
                     If You Need Help
                   </h2>
                   <h3 class="text-[32px] leading-[45px] text-white font-[900] mt-7">
-                    0125836994
+                    <a href="tel:+919115501534">+91 9115501534</a>
                   </h3>
                   <h4 class="text-lg text-white font-bold mt-4">
                     or Contact Form

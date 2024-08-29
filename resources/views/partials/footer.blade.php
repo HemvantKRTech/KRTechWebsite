@@ -1,4 +1,4 @@
-<section class="mt-[60px] lg:mt-[120px] relative bg-heading w-full pt-10 lg:pt-[90px] px-4 xl:px-0">
+<section class="mt-[60px]  relative bg-heading w-full pt-10 lg:pt-[90px] px-4 xl:px-0">
     <a href="#" class="absolute bottom-[160px] right-[70px] z-20">
       <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="22.5" cy="22.5" r="22.5" fill="#EC4814"></circle>
@@ -134,7 +134,7 @@
                 Address
               </h1>
               <h2 class="text-lg font-bold text-white">
-                Phase 11 Mohali(PB), India
+                KR Technology,SCF-25,2nd Floor,<br> Phase 11,Sector-65, Mohali(PB)
               </h2>
             </div>
           </a>
@@ -147,7 +147,7 @@
               <h1 class="text-lg text-white/70 leading-[18px] pb-2">
                 Phone Number
               </h1>
-              <h2 class="text-lg font-bold text-white">7889217740</h2>
+              <h2 class="text-lg font-bold text-white">+91 9115501534</h2>
             </div>
           </a>
           <a href="" class="text-lg text-white hover:text-sb-orange py-2.5 flex gap-5 group">
@@ -182,7 +182,7 @@
       <!-- copyright -->
       <div class="flex flex-col sm:flex-row justify-between border-t border-[#1A2429] py-[30px]">
         <p class="text-lg text-white/80">
-          © AR Technology 2024 | All Rights Reserved
+          © AR Technology <script type="text/javascript">var year = new Date();document.write(year.getFullYear());</script> | All Rights Reserved
         </p>
         <div class="flex gap-[30px] text-lg text-white/80">
           <a href="{{route('termsandconditions')}}" class="transition-all duration-300 hover:text-sb-orange">

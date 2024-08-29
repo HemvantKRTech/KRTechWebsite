@@ -63,5 +63,6 @@
        <script src="{{ asset('js/swiper.js') }}"></script>
        <script src="{{ asset('js/plugin.js') }}"></script>
        <script src="{{ asset('js/mouse.js') }}"></script>
+       
 </body>
 </html>

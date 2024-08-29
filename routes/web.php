@@ -17,7 +17,7 @@ Route::get('/about', function () {
 })->name('about');
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 Route::post('/newssubscribe', [WebController::class, 'newssubscribe'])->name('newssubscribe');
 
 Route::get('/service/{slug}', [WebController::class, 'show'])->name('servicedetail');

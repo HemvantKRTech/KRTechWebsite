@@ -103,7 +103,7 @@
                 <div class="">
                   <h1 class="text-2xl text-heading font-bold">Location</h1>
                   <p class="text-lg text-paragraph mt-1">
-                    2209 Sector 68 Mohali - 160062
+                    KR Technology,SCF-25,2nd Floor, Phase 11,Sector-65, Mohali(PB)
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@
       </section>
       <section class="pt-[60px] lg:pt-[120px]">
         {{-- <img src="/assets/img/map.png" alt="" > --}}
-        <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.4424141205664!2d76.73816697537076!3d30.67782607461083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fec046a7996a9%3A0x61eb2957d4f8719c!2sPhase%2011%20Police%20Station!5e0!3m2!1sen!2sin!4v1724755527980!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.2877583641616!2d76.74116437537101!3d30.682178774608737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed9c716d363b%3A0x476846d64549eb1!2sKR%20Technology!5e0!3m2!1sen!2sin!4v1724915491518!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </section>
       
    
